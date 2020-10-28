@@ -6,15 +6,27 @@ public class GameController : MonoBehaviour
 {
 
     public GameObject myPrefab;
-    private GameObject[] allRunners;    
-    public int numberOfRunners;    
+
+    //This array holds all lane positions for runners - if you want to understand how it works, look at 
+    //GridPositions.cs - not needed to be understood for this task
     private Vector3[] runningLanes;
 
-    private int myPos = 2;   
+
+    private GameObject[] allRunners;
+
+    //T1 - Expose the variable numberOfRunners below, so you can set it in UnityEditor
+    int numberOfRunners;
+
+    //T2, T3 - Declare a new variable to be "your" position
+
+
+    
 
     // Start is called before the first frame update
     void Start()
     {        
+
+        //Declares a new array with the size of NumberOfRunners
         allRunners = new GameObject[numberOfRunners];
 
         //Creates running lanes according to the number of runners
@@ -23,18 +35,15 @@ public class GameController : MonoBehaviour
 
 
         //This now generates only one "runner"
-        //you must make a loop, calling "CreateRunner()" multiple times
-        for (int counter = 0; counter < numberOfRunners; counter++)
+        //you must make a loop, calling "CreateRunner()" multiple times according to the variable "numberOfRunners"      
+        //T1 - Create a loop here
         {
-            allRunners[counter] = CreateRunner();
-
-
+            //T1 - substitute the HARDCODED values below...
+            allRunners[0] = CreateRunner();
             //Position Runner in the correct running lane            
-            allRunners[counter].transform.position = runningLanes[counter];
+            allRunners[0].transform.position = runningLanes[0];
         }
-
         
-
 
     }
 
@@ -66,42 +75,45 @@ public class GameController : MonoBehaviour
 
     public void AllSmall()
     {
-        foreach (GameObject g in allRunners)
-        {
-            g.transform.localScale *= 0.5f;
-        }
+        //TASK 1
+        //Create a loop that makes you ALL RUNNERS smaller
+
+        //you will need
+        //1 - a loop
+        //2 - to reduce the object's size using localScale
+        //________.transform.localScale *= 0.5f; (for example)
     }
 
 
-    public void FullThunderbolt()
-    {
-        for (int i = 0; i < allRunners.Length; i++)
-        {
-            if (i < myPos)
-            {
-                allRunners[i].transform.localScale *= 0.5f;
-            }
-            else
-            {
-                allRunners[i].transform.localScale *= 2f;
-            }
-        }
-    }
-    
+
+
     public void IncreaseSlowerRunners()
     {
-        for (int i = myPos; i < allRunners.Length; i++)
-        {
-            allRunners[i].transform.localScale *= 2f;
-        }
+        //TASK 2
+        //Create a loop that makes you and all runners after your position bigger
+
+        //you will need
+        //1 - a loop
+        //2 - to reduce the object's size using localScale
+        //________.transform.localScale *= 2f; (for example)
     }
 
     public void ReduceFasterRunners()
     {
-        for (int i = 0; i < myPos; i++)
-        {
-            allRunners[i].transform.localScale *= 0.5f;
-        }
+        //TASK 3
+        //Create a loop that makes all runners before your position smaller
+
+        //you will need
+        //1 - a loop
+        //2 - to reduce the object's size using localScale
+        //________.transform.localScale *= 0.5f; (for example)
+    }
+
+    public void FullThunderbolt()
+    {
+        //EXTRA TASK
+
+        //Do both things at the same time (before smaller, you and after bigger)
     }
 
 }
