@@ -135,7 +135,7 @@ public class GameController : MonoBehaviour
         //2 - to reduce the object's size using localScale
         //________.transform.localScale *= 0.5f; (for example)
 
-        for (int i = myPos; i < allRunners.Length; i++) //allRunners.Length has the same value as numberOfRunners, see video...
+        for (int i = 0; i < myPos; i++) //allRunners.Length has the same value as numberOfRunners, see video...
         {
             allRunners[i].transform.localScale *= 0.5f;
         }
@@ -146,10 +146,9 @@ public class GameController : MonoBehaviour
         //EXTRA TASK
 
         //Do both things at the same time (before smaller, you and after bigger)
-
+        
         IncreaseSlowerRunners();
-        ReduceFasterRunners();
-
+        ReduceFasterRunners();       
 
         //or in a verbose, single loop version with an extra if
         /*
