@@ -12,10 +12,10 @@ public class GameController : MonoBehaviour
     private Vector3[] runningLanes;
 
 
-    private GameObject[] allRunners;
+    public GameObject[] allRunners;
 
     //T1 - Expose the variable numberOfRunners below, so you can set it in UnityEditor
-    int numberOfRunners;
+    public int numberOfRunners;
 
     //T2, T3 - Declare a new variable to be "your" position
 
@@ -37,11 +37,16 @@ public class GameController : MonoBehaviour
         //This now generates only one "runner"
         //you must make a loop, calling "CreateRunner()" multiple times according to the variable "numberOfRunners"      
         //T1 - Create a loop here
+
+        int counter = 0;
+        while (counter < numberOfRunners)
         {
             //T1 - substitute the HARDCODED values below...
-            allRunners[0] = CreateRunner();
+            allRunners[counter] = CreateRunner();
             //Position Runner in the correct running lane            
-            allRunners[0].transform.position = runningLanes[0];
+            allRunners[counter].transform.position = runningLanes[counter];
+
+            counter++;
         }
         
 
