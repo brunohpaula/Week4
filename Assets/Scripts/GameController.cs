@@ -17,8 +17,8 @@ public class GameController : MonoBehaviour
     //T1 - Expose the variable numberOfRunners below, so you can set it in UnityEditor
     public int numberOfRunners;
 
-    //T2, T3 - Declare a new variable to be "your" position
-
+    //T2, T3 - Declare a new variable to be "your" position IN THE RACE
+    public int myPos;
 
     
 
@@ -87,6 +87,23 @@ public class GameController : MonoBehaviour
         //1 - a loop
         //2 - to reduce the object's size using localScale
         //________.transform.localScale *= 0.5f; (for example)
+
+
+        /*
+         This other option also works...
+          
+        for (int i = 0; i < numberOfRunners; i++) //numberOfRunners can be swapped by allRunners.Length... see video
+        {
+            allRunners[i].transform.localScale *= 0.5f;
+        }
+
+        */
+
+        foreach (GameObject g in allRunners)
+        {
+            g.transform.localScale *= 0.5f;
+        }
+
     }
 
 
@@ -101,6 +118,11 @@ public class GameController : MonoBehaviour
         //1 - a loop
         //2 - to reduce the object's size using localScale
         //________.transform.localScale *= 2f; (for example)
+
+        for (int i = myPos; i < allRunners.Length; i++) //allRunners.Length has the same value as numberOfRunners, see video...
+        {
+            allRunners[i].transform.localScale *= 2f;
+        }
     }
 
     public void ReduceFasterRunners()
@@ -112,6 +134,11 @@ public class GameController : MonoBehaviour
         //1 - a loop
         //2 - to reduce the object's size using localScale
         //________.transform.localScale *= 0.5f; (for example)
+
+        for (int i = myPos; i < allRunners.Length; i++) //allRunners.Length has the same value as numberOfRunners, see video...
+        {
+            allRunners[i].transform.localScale *= 0.5f;
+        }
     }
 
     public void FullThunderbolt()
@@ -119,6 +146,28 @@ public class GameController : MonoBehaviour
         //EXTRA TASK
 
         //Do both things at the same time (before smaller, you and after bigger)
+
+        IncreaseSlowerRunners();
+        ReduceFasterRunners();
+
+
+        //or in a verbose, single loop version with an extra if
+        /*
+        
+
+        for (int i = 0; i < allRunners.Length; i++)
+        {
+            if (i < myPos)
+            {
+                allRunners[i].transform.position *= 2f;
+            }
+            else
+            {
+                allRunners[i].transform.position *= 0.5f;
+            }
+        }
+
+        */
     }
 
 }
